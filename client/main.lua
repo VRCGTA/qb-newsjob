@@ -141,59 +141,59 @@ function MenuHeliGarage()
     exports['qb-menu']:openMenu(vehicleMenu)
 end
 
-CreateThread(function()
-    while true do
-        Wait(3)
-        if LocalPlayer.state.isLoggedIn then
-            local inRange = false
-            local pos = GetEntityCoords(PlayerPedId())
-            if PlayerJob.name == "reporter" then
-                if #(pos - vector3(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)) < 10.0 then
-                    inRange = true
-                    DrawMarker(2, Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
-                    if #(pos - vector3(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)) < 1.5 then
-                        if IsPedInAnyVehicle(PlayerPedId(), false) then
-                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, Lang:t("text.store_vehicle"))
-                        else
-                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, Lang:t("text.vehicles"))
-                        end
-                        if IsControlJustReleased(0, 38) then
-                            if IsPedInAnyVehicle(PlayerPedId(), false) then
-                                DeleteVehicle(GetVehiclePedIsIn(PlayerPedId()))
-                            else
-                                MenuGarage()
-                            end
-                        end
-                    end
-                elseif  #(pos - vector3(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z)) < 5.0 then
-                    inRange = true
-                    DrawMarker(2, Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
-                    if #(pos - vector3(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z)) < 1.5 then
-                        if IsPedInAnyVehicle(PlayerPedId(), false) then
-                            DrawText3D(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z, Lang:t("text.store_helicopters"))
-                        else
-                            DrawText3D(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z, Lang:t("text.helicopters"))
-                        end
-                        if IsControlJustReleased(0, 38) then
-                            if IsPedInAnyVehicle(PlayerPedId(), false) then
-                                DeleteVehicle(GetVehiclePedIsIn(PlayerPedId()))
-                            else
-                                MenuHeliGarage()
-                            end
-                        end
-                    end
-                end
-                if not inRange then
-                    Wait(2500)
-                end
-            else
-                Wait(2500)
-            end
-        else
-            Wait(2500)
-        end
-    end
-end)
+-- CreateThread(function()
+--     while true do
+--         Wait(3)
+--         if LocalPlayer.state.isLoggedIn then
+--             local inRange = false
+--             local pos = GetEntityCoords(PlayerPedId())
+--             if PlayerJob.name == "reporter" then
+--                 if #(pos - vector3(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)) < 10.0 then
+--                     inRange = true
+--                     DrawMarker(2, Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
+--                     if #(pos - vector3(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)) < 1.5 then
+--                         if IsPedInAnyVehicle(PlayerPedId(), false) then
+--                             DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, Lang:t("text.store_vehicle"))
+--                         else
+--                             DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, Lang:t("text.vehicles"))
+--                         end
+--                         if IsControlJustReleased(0, 38) then
+--                             if IsPedInAnyVehicle(PlayerPedId(), false) then
+--                                 DeleteVehicle(GetVehiclePedIsIn(PlayerPedId()))
+--                             else
+--                                 MenuGarage()
+--                             end
+--                         end
+--                     end
+--                 elseif  #(pos - vector3(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z)) < 5.0 then
+--                     inRange = true
+--                     DrawMarker(2, Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
+--                     if #(pos - vector3(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z)) < 1.5 then
+--                         if IsPedInAnyVehicle(PlayerPedId(), false) then
+--                             DrawText3D(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z, Lang:t("text.store_helicopters"))
+--                         else
+--                             DrawText3D(Config.Locations["heli"].coords.x, Config.Locations["heli"].coords.y, Config.Locations["heli"].coords.z, Lang:t("text.helicopters"))
+--                         end
+--                         if IsControlJustReleased(0, 38) then
+--                             if IsPedInAnyVehicle(PlayerPedId(), false) then
+--                                 DeleteVehicle(GetVehiclePedIsIn(PlayerPedId()))
+--                             else
+--                                 MenuHeliGarage()
+--                             end
+--                         end
+--                     end
+--                 end
+--                 if not inRange then
+--                     Wait(2500)
+--                 end
+--             else
+--                 Wait(2500)
+--             end
+--         else
+--             Wait(2500)
+--         end
+--     end
+-- end)
 
 CreateThread(function()
     while true do
