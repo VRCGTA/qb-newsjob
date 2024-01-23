@@ -16,35 +16,35 @@ local function DrawText3D(x, y, z, text)
     ClearDrawOrigin()
 end
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    PlayerJob = QBCore.Functions.GetPlayerData().job
-    if PlayerJob.name == "reporter" then
-        local blip = AddBlipForCoord(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)
-        SetBlipSprite(blip, 225)
-        SetBlipDisplay(blip, 4)
-        SetBlipScale(blip, 0.6)
-        SetBlipAsShortRange(blip, true)
-        SetBlipColour(blip, 1)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentSubstringPlayerName(Config.Locations["vehicle"].label)
-        EndTextCommandSetBlipName(blip)
-    end
-end)
+-- RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+--     PlayerJob = QBCore.Functions.GetPlayerData().job
+--     if PlayerJob.name == "reporter" then
+--         local blip = AddBlipForCoord(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)
+--         SetBlipSprite(blip, 225)
+--         SetBlipDisplay(blip, 4)
+--         SetBlipScale(blip, 0.6)
+--         SetBlipAsShortRange(blip, true)
+--         SetBlipColour(blip, 1)
+--         BeginTextCommandSetBlipName("STRING")
+--         AddTextComponentSubstringPlayerName(Config.Locations["vehicle"].label)
+--         EndTextCommandSetBlipName(blip)
+--     end
+-- end)
 
-RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
-    PlayerJob = JobInfo
-    if PlayerJob.name == "reporter" then
-        local blip = AddBlipForCoord(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)
-        SetBlipSprite(blip, 225)
-        SetBlipDisplay(blip, 4)
-        SetBlipScale(blip, 0.6)
-        SetBlipAsShortRange(blip, true)
-        SetBlipColour(blip, 1)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentSubstringPlayerName(Config.Locations["vehicle"].label)
-        EndTextCommandSetBlipName(blip)
-    end
-end)
+-- RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
+--     PlayerJob = JobInfo
+--     if PlayerJob.name == "reporter" then
+--         local blip = AddBlipForCoord(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z)
+--         SetBlipSprite(blip, 225)
+--         SetBlipDisplay(blip, 4)
+--         SetBlipScale(blip, 0.6)
+--         SetBlipAsShortRange(blip, true)
+--         SetBlipColour(blip, 1)
+--         BeginTextCommandSetBlipName("STRING")
+--         AddTextComponentSubstringPlayerName(Config.Locations["vehicle"].label)
+--         EndTextCommandSetBlipName(blip)
+--     end
+-- end)
 
 function TakeOutVehicle(vehicleInfo)
     local coords = Config.Locations["vehicle"].coords
